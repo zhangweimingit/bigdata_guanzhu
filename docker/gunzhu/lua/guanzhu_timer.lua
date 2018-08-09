@@ -276,7 +276,7 @@ local function main()
         end
 		
 		--按省份切割顺网给的原始数据文件
-		local ok, err = new_timer(1, split_file_fun)
+		local ok, err = new_timer(2, split_file_fun)
 		if not ok then
 			ngx.log(ngx.ERR, "failed to create a timer: ", err)
 			return
