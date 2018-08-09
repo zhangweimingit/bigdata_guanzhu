@@ -1,0 +1,25 @@
+version: '2'
+
+
+services:    
+  guanzhu:
+    image: docker.ikuai8.com/dev/guanzhu:1.0.0
+    container_name: guanzhu
+    ports:
+     - "8088:80"
+     - "8443:443"
+    #environment:
+    # - SHUNWANG_DATA_PATH=/ikuai/bigdata/ftpserver/data
+    volumes:
+     - /ikuai/bigdata/guanzhu/data:/service/data
+     - /ikuai/bigdata/guanzhu/config:/service/config
+     - /ikuai/log/guanzhu:/usr/local/openresty/nginx/logs
+     - /etc/localtime:/etc/localtime:ro
+     - /ikuai/bigdata/ftpserver/data:/home/bigdata
+    networks:
+      -  bigdata_network
+    restart: on-failure    
+
+networks:
+  bigdata_network:
+    external: true

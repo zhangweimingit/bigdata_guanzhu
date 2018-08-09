@@ -1,0 +1,66 @@
+#!/bin/bash
+
+#######################################################
+#
+# 	MUST use: source setenv [release|test|dev]
+#
+########################################################
+
+
+function __set_release()
+{
+	export DOCKER_REPERTORY=dockers.ikuai8.com
+	export DOCKER_PATH=release
+	export DEPLOY_TARGET=release
+}
+
+function __set_test()
+{
+	export DOCKER_REPERTORY=docker.ikuai8.com
+	export DOCKER_PATH=test
+	export DEPLOY_TARGET=test
+}
+
+function __set_dev()
+{
+	export DOCKER_REPERTORY=docker.ikuai8.com
+	export DOCKER_PATH=dev
+	export DEPLOY_TARGET=dev
+}
+
+
+function __show()
+{
+	echo DOCKER_REPERTORY=${DOCKER_REPERTORY}
+	echo DOCKER_PATH=${DOCKER_PATH}
+	echo DEPLOY_TARGET=${DEPLOY_TARGET}
+}
+
+function __help()
+{
+	echo "MUST use: source setenv [release|test|dev]"
+	echo "Show info:  ./setenv show"
+}
+
+case x"${1}" in
+	xrelease)
+		__set_release
+		;;
+	xtest)
+		__set_test
+		;;
+	xdev)
+		__set_dev
+		;;
+	xshow)
+		__show
+		exit 0
+		;;
+		*)
+		__help
+		exit 0
+		;;
+esac
+
+__show
+

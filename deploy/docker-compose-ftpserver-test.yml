@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  ftpserver:
+    image: dockers.ikuai8.com/bigdata/ftpserver:1.0.0
+    container_name: ftpserver
+    ports:
+     - "2020-2021:20-21"
+     - "60005-60010:60005-60010"
+    environment:
+     - PASV_MIN_PORT=60005
+     - PASV_MAX_PORT=60010
+     - PASV_ADDRESS=
+     - IF_TEST_FTP=NO
+    volumes:
+     - /ikuai/bigdata/ftpserver/data:/home/ftpserver
+     - /ikuai/bigdata/ftpserver/config:/etc/vsftpd/data
+     - /ikuai/bigdata/ftpserver/log:/var/log/vsftpd
+     - /etc/localtime:/etc/localtime:ro
+    networks:
+      -  bigdata_network
+    restart: on-failure
+ 
+
+networks:
+  bigdata_network:
+    external: true
+    
