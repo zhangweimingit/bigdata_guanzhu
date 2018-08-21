@@ -7,8 +7,9 @@ services:
     ports:
      - "80:80"
      - "443:443"
-    #environment:
-    # - SHUNWANG_DATA_PATH=/ikuai/bigdata/ftpserver/data
+    environment:
+     - REDIS-SERVER=guanzhu-redis-server
+     - GUANZHU=guanzhu
     volumes:
      - /ikuai/bigdata/guanzhu/data:/service/data
      - /ikuai/bigdata/guanzhu/config:/service/config

@@ -10,7 +10,8 @@ services:
      - "8088:80"
      - "8443:443"
     environment:
-     - REDIS-SERVER=redis-server
+     - REDIS-SERVER=guanzhu-redis-server
+     - GUANZHU=guanzhu
     volumes:
      - /ikuai/bigdata/guanzhu/data:/service/data
      - /ikuai/bigdata/guanzhu/config:/service/config
